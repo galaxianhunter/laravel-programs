@@ -1,0 +1,19 @@
+<?php
+
+
+Route::get('/', 'PostController@showdata' );
+    
+
+Route::get('/regi', function () {
+    return view('register');
+});
+
+Route::post('/database','PostController@functionname' )->name('database.register');
+Route::post('/update/{id}','PostController@update');
+
+Route::get('/edit/{id}','PostController@edit');
+
+
+Route::get('/delete/{id}','PostController@delete');
+
+

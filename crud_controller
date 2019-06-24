@@ -1,0 +1,64 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use App\post;
+use DB;
+
+class PostController extends Controller
+{
+    /*posting data received from form into data base*/
+    public function functionname(Request $request)
+    {
+
+        
+        $name = $request->get('name');
+        $password = $request->get('password');
+        
+        
+         DB::table('posts')->insert(['name'=>$name,'password'=>$password]);
+        
+
+
+    }
+    public function update(Request $request,$id){
+        // $data= $request->validated(); 
+        
+        $name = $request->get('name');
+        $password = $request->get('password');
+
+        DB::table('posts')->where('id',$id)->update(['name'=>$name,'password'=>$password]);
+        return 'updated successfully';
+        
+    }
+    
+   /* public function store(Request $request){
+        if( laraveldatabase:: Create ($request->all())){
+            return true;
+        
+    }
+
+}*/
+
+    public function edit($id){
+        $edit = DB::table('posts')->where('id',$id)->first();
+
+        return view('update',['update'=>$edit]);
+    }
+
+    public function showdata(){
+        $post = DB::table('posts')->get();
+        return view ('welcome',['post'=>$post]);
+
+
+    }
+
+    public function delete($id){
+        DB::table('posts')->where('id',$id)->delete();
+        return back();
+    }
+    
+}
+
+    

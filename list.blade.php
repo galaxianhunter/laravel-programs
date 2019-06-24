@@ -1,0 +1,22 @@
+<html>
+<head>
+   <title>laravel</title>
+</head>
+<body>
+<table>
+<tr>
+<th>SN</th>
+<th>name</th>
+<th>country</th>
+<th>gender</th>
+</tr>
+@foreach($countries as $country)
+<tr>
+<td>{{$loop->iteration}}</td>
+<td>{{$country->name}}</td>
+<td>{{$country->country->country}}</td>
+<td>{{$country->gender}}</td>
+@endforeach
+</table>
+</body>
+</html>
